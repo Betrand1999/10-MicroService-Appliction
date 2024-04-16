@@ -1,0 +1,14 @@
+name: deploy to minikub
+on: 
+ push:
+  branches:
+   - main 
+jobs:
+ build:
+  runs-on: self-hosted 
+  steps: 
+  - name: checout repo 
+    uses: actions/checkout@v2 
+  - name: k apply 
+    run: |
+     kubectl apply -f ./release/kubernetes-manifests.yaml  
