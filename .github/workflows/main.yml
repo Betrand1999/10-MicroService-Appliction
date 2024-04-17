@@ -2,7 +2,7 @@ name: deploy to minikub cluster
 on: 
  push:
   branches:
-   - dev-branch
+   - main
 jobs:
  build:
   runs-on: self-hosted 
