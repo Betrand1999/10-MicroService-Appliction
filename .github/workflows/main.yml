@@ -1,8 +1,8 @@
-name: deploy to minikub
+name: deploy to minikub cluster
 on: 
  push:
   branches:
-   - main 
+   - dev-branch
 jobs:
  build:
   runs-on: self-hosted 
