@@ -13,10 +13,13 @@ jobs:
        uses: Azure/login@v2
        with:
          creds: ${{ secrets.AZURE_CREDENTIALS}}
-         aks-cluster: my-aks-cluster
+         cluster-name: my-aks-cluster
      - name: set up eks cluster
        uses: azure/aks-set-context@v1
-         
+       with:
+         creds: ${{ secrets.AZURE_CREDENTIALS}}
+         cluster-name: my-aks-cluster 
+         resource-group: my-aks-cluster_group    
      - name: deploy to azure 
        run: |
         kubectl apply -f ./release/kubernetes-manifests.yaml
