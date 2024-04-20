@@ -10,7 +10,7 @@ jobs:
      - name: checkout action
        uses: actions/checkout@v2 
      - name: login to azure 
-       uses: azure/login-action@v2
+       uses: azure/login@v2
        with:
          cred: ${{ secrets.AZURE_CREDENTIALS}}
          aks-cluster: my-aks-cluster
