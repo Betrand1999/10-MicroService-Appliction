@@ -1,14 +1,21 @@
-name: deploy to minikub cluster
-on: 
+name: CICD Deploy Azure 
+on:
  push:
-  branches:
-   - main
+   branches:
+     - main
 jobs:
- build:
-  runs-on: self-hosted 
-  steps: 
-  - name: checout repo 
-    uses: actions/checkout@v2 
-  - name: k apply 
-    run: |
-     kubectl apply -f ./release/kubernetes-manifests.yaml  
+  build:
+   runs-on: ubuntu-latest 
+   steps:
+     - name: checkout action
+       uses: actions/checkout@v2 
+     - name: login to azure 
+       uses: azure/login-action@v2
+       with:
+         cred: ${{ secrets.AZURE_CREDENTIALS}}
+         aks-cluster: my-aks-cluster
+     - name: deploy to azure 
+       run: |
+        kubectl apply -f ./release/kubernetes-manifests.yaml
+        kubectl get pod 
+        kubectl get svc 
