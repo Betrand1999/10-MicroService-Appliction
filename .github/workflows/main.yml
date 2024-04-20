@@ -10,10 +10,13 @@ jobs:
      - name: checkout action
        uses: actions/checkout@v2 
      - name: login to azure 
-       uses: azure/eks-set-context@v1
+       uses: Azure/login@v2
        with:
-         cred: ${{ secrets.AZURE_CREDENTIALS}}
+         creds: ${{ secrets.AZURE_CREDENTIALS}}
          aks-cluster: my-aks-cluster
+     - name: set up eks cluster
+       uses: azure/eks-set-context@v1
+         
      - name: deploy to azure 
        run: |
         kubectl apply -f ./release/kubernetes-manifests.yaml
