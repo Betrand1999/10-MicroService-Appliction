@@ -14,13 +14,10 @@ jobs:
        with:
          cred: ${{ secrets.AZURE_CREDENTIALS}}
          aks-cluster: my-aks-cluster
-         enable-AzPSSession: false
-         environment: azurecloud
-         allow-no-subscriptions: false
-         audience: api://AzureADTokenExchange
-         auth-type: SERVICE_PRINCIPAL
      - name: deploy to azure 
        run: |
         kubectl apply -f ./release/kubernetes-manifests.yaml
         kubectl get pod 
         kubectl get svc 
+
+  #
